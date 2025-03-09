@@ -1,0 +1,26 @@
+name: "Multiple_event"
+
+on:
+  push:
+    branches:
+      - master
+      - production
+  pull_request:
+    branches:
+      - test
+  workflow_dispatch:
+
+jobs:
+  on_push:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "print hello world"
+        run: echo "inside test branch make the push"
+
+  on_pull_request:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Pull request is run"
+        run: echo "indide test branch make the pull request"
