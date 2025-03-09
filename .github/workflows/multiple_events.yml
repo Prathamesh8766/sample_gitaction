@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - production
+      - test
   pull_request:
     branches:
       - test
@@ -16,11 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "print hello world"
-        run: echo "inside test branch make the push"
+        run: echo "Patil"
 
   on_pull_request:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: "Pull request is run"
-        run: echo "indide test branch make the pull request"
+        run: echo "Done"
+
+  on_workflow_dispatch:
+    if: github.event_name== 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "this is workflow dispatch"
+        run: echo "workflow dispatch"
+
