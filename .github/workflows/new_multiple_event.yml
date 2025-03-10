@@ -9,7 +9,9 @@ on:
   pull_request:
     branches:
       - test
-    types: [closed]  # Corrected from "type: close"
+    types: 
+      - closed
+      - opened  # Corrected from "type: close"
   workflow_dispatch:
 
 jobs:
