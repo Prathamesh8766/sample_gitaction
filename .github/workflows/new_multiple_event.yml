@@ -1,0 +1,42 @@
+name: "new_Multiple_event"
+
+on:
+  push:
+    branches:
+      - master
+      - production
+      - test
+  pull_request:
+    branches:
+      - test
+    types: [closed]  # Corrected from "type: close"
+  workflow_dispatch:
+
+jobs:
+  on_push:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print Hello World"
+        run: echo "Patil"
+
+  on_pull_request_open:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Pull request is run"
+        run: echo "Done"
+
+  on_pull_request_close:
+    if: github.event_name == "pull_request" && github.event.action == "closed"
+    runs-on: ubuntu-latest
+    steps: 
+      - name: "Pull request is closed"  
+        run: echo "closed"  
+
+  on_workflow_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Manual trigger executed"
+        run: echo "Workflow manually triggered"
+
